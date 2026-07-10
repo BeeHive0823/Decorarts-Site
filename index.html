@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorarts Eventos - Loja Oficial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Skip link para acessibilidade */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0f172a;
+            color: #fff;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* Header Modernizado */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .logo-container {
+            max-width: 360px;
+            margin: 0 auto;
+        }
+        .logo-svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Seção Principal de Produtos */
+        .products-section {
+            max-width: 1240px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        /* ===========================
+   Banner
+===========================*/
+.banner{
+    width:100%;
+    height:320px;
+    overflow:hidden;
+    background:#eee;
+}
+
+.banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ===========================
+   Menu Horizontal
+===========================*/
+
+.menu-horizontal{
+    background:#001a57;
+    box-shadow:0 3px 8px rgba(1, 3, 119, 0);
+}
+
+.menu-horizontal ul{
+    max-width:1200px;
+    margin:auto;
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.menu-horizontal li{
+    margin:0;
+}
+
+.menu-horizontal a{
+    display:block;
+    padding:18px 28px;
+    color:#fff;
+    font-weight:bold;
+    transition:.3s;
+    letter-spacing:.5px;
+}
+
+.menu-horizontal a:hover{
+    background:#d90606;
+}
+
+        /* Responsividade do Grid */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .products-section { margin: 20px auto; }
+        }
+        @media (max-width: 480px) {
+            .products-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Product Card Premium */
+        .product-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -4px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+        
+        .product-image-wrapper {
+            position: relative;
+            background: #fafafa;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .product-image {
+            width: 100%;
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-image svg {
+            transform: scale(1.05);
+        }
+        .product-image svg {
+            transition: transform 0.3s ease;
+        }
+
+        /* Informações do Produto */
+        .product-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #334155;
+            margin-bottom: 12px;
+            line-height: 1.5;
+            min-height: 42px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Preços e Tags */
+        .price-container {
+            margin-bottom: 10px;
+        }
+        .price-old {
+            font-size: 12px;
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: flex-start;
+            margin: 2px 0;
+        }
+        .price sup {
+            font-size: 14px;
+            margin-top: 4px;
+            margin-left: 1px;
+        }
+        .price-pix {
+            font-size: 12px;
+            background: #e6f7ed;
+            color: #15803d;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+        .installments, .installments-green {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .installments-green {
+            color: #16a34a;
+            font-weight: 500;
+        }
+
+        /* Badges e Cupons modernos */
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 8px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            color: #475569;
+            margin-top: 8px;
+            align-self: flex-start;
+        }
+        .coupon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #b45309;
+            background: #fef3c7;
+            padding: 4px 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            align-self: flex-start;
+        }
+        .coupon-badge svg {
+            width: 14px;
+            height: 14px;
+            fill: #b45309;
+        }
+        .free-shipping {
+            font-size: 12px;
+            font-weight: 600;
+            color: #16a34a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: auto;
+            padding-top: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .free-shipping::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #16a34a;
+            border-radius: 50%;
+        }
+
+        /* Variantes de Imagens (Bolinhas) */
+        .image-variants {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            background: rgba(255,255,255,0.8);
+            padding: 4px 8px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+        }
+        .variant-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #cbd5e1;
+        }
+        .variant-dot.active {
+            background: #0f172a;
+            width: 12px;
+            border-radius: 4px;
+        }
+
+        /* Rodapé Moderno */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 60px;
+        }
+        .footer-logo {
+            max-width: 180px;
+            margin: 0 auto 20px;
+            opacity: 0.8;
+        }
+        .footer-credit {
+            font-size: 13px;
+            color: #64748b;
+        }
+        .footer-credit a {
+            color: #0f172a;
+            font-weight: 600;
+            border-bottom: 1px dashed #cbd5e1;
+            transition: color 0.2s;
+        }
+        .footer-credit a:hover {
+            color: #25d366;
+            border-color: #25d366;
+        }
+
+        /* Botão do WhatsApp Elevado com Pulso */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .whatsapp-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .whatsapp-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: #fff;
+        }
+        
+        /* Animação suave para o botão flutuante */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+            100% { transform: scale(0.95); opacity: 1; }
+        }
+
+        .top-header{
+
+    width:100%;
+    background:#fff;
+    padding:15px 40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+
+.logo img{
+
+    height:70px;
+
+}
+
+.search-box{
+
+    flex:1;
+
+    display:flex;
+
+    margin:0 50px;
+
+}
+
+.search-box input{
+
+    width:100%;
+    height:48px;
+
+    border:2px solid #0b3b91;
+
+    border-right:none;
+
+    border-radius:30px 0 0 30px;
+
+    padding:0 20px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+.search-box button{
+
+    width:60px;
+
+    border:none;
+
+    background:#0b3b91;
+
+    color:#fff;
+
+    font-size:20px;
+
+    border-radius:0 30px 30px 0;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.search-box button:hover{
+
+    background:#d81f26;
+
+}
+
+.header-buttons{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.btn-whatsapp,
+.btn-cart{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    text-decoration:none;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.btn-whatsapp{
+
+    background:#25D366;
+
+    color:#fff;
+
+}
+
+.btn-whatsapp:hover{
+
+    background:#1eb859;
+
+}
+
+.btn-cart{
+
+    background:#0b3b91;
+
+    color:#fff;
+
+    position:relative;
+
+}
+
+.btn-cart:hover{
+
+    background:#d81f26;
+
+}
+
+.cart-count{
+
+    position:absolute;
+
+    top:-8px;
+
+    right:-8px;
+
+    width:22px;
+
+    height:22px;
+
+    background:red;
+
+    color:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:12px;
+
+}
+
+/**CARROSEL **/
+
+.carousel{
+
+    width:100%;
+    max-width:1200px;
+    height:450px;
+
+    margin:auto;
+
+    overflow:hidden;
+
+    position:relative;
+
+    border-radius:20px;
+
+}
+
+
+.slides{
+
+    display:flex;
+
+    height:100%;
+
+    transition:transform .6s ease-in-out;
+
+}
+
+
+.slide{
+
+    min-width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+/* Botões */
+
+.btn-prev,
+.btn-next{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+
+    width:50px;
+    height:50px;
+
+
+    border:none;
+
+    border-radius:50%;
+
+
+    background:rgba(0,0,0,.5);
+
+    color:white;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+}
+
+
+.btn-prev{
+
+    left:20px;
+
+}
+
+
+.btn-next{
+
+    right:20px;
+
+}
+
+
+.btn-prev:hover,
+.btn-next:hover{
+
+    background:#0b5ed7;
+
+}
+
+
+/* Bolinhas */
+
+.dots{
+
+    position:absolute;
+
+    bottom:20px;
+
+    width:100%;
+
+    text-align:center;
+
+}
+
+
+.dot{
+
+    display:inline-block;
+
+    width:12px;
+
+    height:12px;
+
+    margin:5px;
+
+    background:white;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    opacity:.6;
+
+}
+
+
+.dot.active{
+
+    opacity:1;
+
+    background:#2ebf63;
+
+}
+
+
+/* Celular */
+
+@media(max-width:700px){
+
+    .carousel{
+
+        height:250px;
+
+    }
+
+
+}
+
+/* ===========================
+   FOOTER MODERNO
+=========================== */
+
+
+.footer{
+
+    background:#001a57;
+
+    color:white;
+
+    margin-top:60px;
+
+    padding:50px 20px 0;
+
+}
+
+
+.footer-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+
+}
+
+.footer-logo img{
+
+    width:350px;
+
+    background:transparent;
+
+    padding:10px;
+
+    filter:drop-shadow(0 5px 10px rgba(0,0,0,.4));
+
+}
+
+
+
+.footer-text{
+
+    max-width:350px;
+
+}
+
+
+.footer-text h3{
+
+    font-size:25px;
+
+    margin-bottom:15px;
+
+}
+
+
+.footer-text p{
+
+    color:#dbeafe;
+
+    line-height:1.7;
+
+}
+
+
+
+.footer-social h3{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.social-buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+
+.social-buttons a{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:12px 25px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+
+
+.facebook{
+
+    background:#1877f2;
+
+}
+
+
+.instagram{
+
+    background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af);
+
+}
+
+
+.youtube{
+
+    background:#ff0000;
+
+}
+
+
+.whatsapp{
+
+    background:#25d366;
+
+}
+
+
+
+.social-buttons a:hover{
+
+    transform:translateY(-4px);
+
+    opacity:.85;
+
+}
+
+
+
+/* Parte inferior */
+
+.footer-bottom{
+
+    margin-top:40px;
+
+    padding:20px;
+
+    text-align:center;
+
+    background:#001238;
+
+    color:#cbd5e1;
+
+    font-size:14px;
+
+}
+
+
+
+/* Celular */
+
+@media(max-width:768px){
+
+
+    .footer-container{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+
+    .social-buttons{
+
+        width:250px;
+
+    }
+
+
+}
+
+    </style>
+</head>
+<body>
+    <a href="#content" class="skip-link">Ir para o conteúdo</a>
+
+    <header class="top-header">
+
+    <div class="logo">
+        <img src="logo.png" alt="Decorarts">
+    </div>
+
+    <div class="search-box">
+        <input type="text" placeholder="O que você está procurando?">
+        <button>
+            🔍
+        </button>
+    </div>
+
+    <div class="header-buttons">
+
+        <a href="https://wa.me/5511983023617" class="btn-whatsapp">
+            💬
+            <span>WhatsApp</span>
+        </a>
+
+        <a href="carrinho.html" class="btn-cart">
+
+            🛒
+
+            <span>Carrinho</span>
+
+            <span class="cart-count">0</span>
+
+        </a>
+
+    </div>
+
+</header>
+    <!-- Header -->
+    
+    <!-- Banner -->
+
+<div class="carousel">
+
+    <div class="slides">
+
+        <img src="imagem1.png" class="slide">
+        <img src="imagem2.png" class="slide">
+        <img src="imagem3.png" class="slide">
+
+    </div>
+
+
+    <button class="btn-prev">&#10094;</button>
+    <button class="btn-next">&#10095;</button>
+
+
+    <div class="dots">
+
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+
+    </div>
+
+</div>
+<!-- Menu -->
+
+<nav class="menu-horizontal">
+    <ul>
+        <li><a href="#">INÍCIO</a></li>
+        <li><a href="#">BANDEIRAS</a></li>
+        <li><a href="#">LAÇOS</a></li>
+        <li><a href="#">FITAS METÁLICAS</a></li>
+        <li><a href="#">ESTRELAS</a></li>
+    </ul>
+</nav>
+
+    <!-- Área de Produtos -->
+    <main id="content">
+        <section class="products-section">
+            <div class="products-grid" id="productsGrid">
+                <!-- Injetado dinamicamente via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+   <footer class="footer">
+
+    <div class="footer-container">
+
+
+        <div class="footer-logo">
+
+            <img src="logo.png" alt="Decorarts Eventos">
+
+        </div>
+
+        <div class="footer-text">
+
+            <h3>Decorarts Eventos</h3>
+
+            <p>
+                Transformando espaços em experiências incríveis.
+                Bandeiras, estrelas, fitas metálicas e decoração
+                para todos os tipos de eventos.
+            </p>
+
+        </div>
+
+        <div class="footer-social">
+
+            <h3>Siga nossas redes</h3>
+
+            <div class="social-buttons">
+
+                <a href="#" class="facebook">
+                    📘 Facebook
+                </a>
+
+                <a href="#" class="instagram">
+                    📸 Instagram
+                </a>
+
+                <a href="#" class="youtube">
+                    ▶️ YouTube
+                </a>
+
+                <a href="https://wa.me/5518997226158" class="whatsapp">
+                    💬 WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        © <?php echo date("Y"); ?> Decorarts Eventos - Todos os direitos reservados
+
+    </div>
+
+
+</footer>
+
+    <!-- Botão de WhatsApp Flutuante -->
+    <a href="https://api.whatsapp.com/send/?phone=5511983023617&text=Ol%C3%A1" target="_blank" class="whatsapp-btn" aria-label="Abrir bate-papo no WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script>
+        // Mantive sua lista original de produtos intocada para não quebrar a lógica do banco
+        const products = [
+            {
+                title: "Kit 6 Asa De 2,50 X 1,70 Cm C/ Ou S/ Borda Tecido Tencionado",
+                price: "460",
+                priceCents: "",
+                installments: "12x R$ 44,48",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/e8f4f8/333?text=Kit+6+Asa",
+                color: "#2196F3"
+            },
+            {
+                title: "Espiral Ou Parafuso Kit C/ 5 Pc Em Tecido Tencionado 1.70 Cm",
+                price: "446",
+                priceCents: "40",
+                oldPrice: "R$ 469,90",
+                pixDiscount: "5% OFF no Pix",
+                installmentsGreen: "9x R$ 52,21 sem juros",
+                installmentsPrefix: "ou R$ 469,90 em",
+                badge: "7% OFF Linha de credito",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/f0fff0/333?text=Espiral+Kit",
+                color: "#4CAF50"
+            },
+            {
+                title: "Decoracao P/ Loja De Veiculos (kit 4 Estrela 0,70 Cm\u00B2)",
+                price: "350",
+                priceCents: "",
+                installments: "12x R$ 34,24",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/f5f5f5/333?text=Estrela+4",
+                color: "#607D8B"
+            },
+            {
+                title: "Kit 10 Bandeiras P/ Loteamento 50x75 Cm C/ Mastro De 75cm",
+                price: "315",
+                priceCents: "",
+                installmentsGreen: "6x R$ 52,50 sem juros",
+                freeShipping: true,
+                hasVariants: true,
+                image: "https://placehold.co/300x300/ffebee/333?text=Bandeiras+10",
+                color: "#f44336"
+            },
+            {
+                title: "Kit C/ 4 Estrela De Tecido 1,20x1,20 Cm Varias Cores",
+                price: "570",
+                priceCents: "",
+                installments: "12x R$ 55,12",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/e3f2fd/333?text=Estrela+1.20",
+                color: "#1565C0"
+            },
+            {
+                title: "Estrelas De Tecido P/ Decoracao (varias Cores) (0,70 Cm\u00B2)",
+                price: "74",
+                priceCents: "90",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/fce4ec/333?text=Estrela+0.70",
+                color: "#E91E63"
+            },
+            {
+                title: "Tecido Tencionado - Kit 3 Estrela De Tecido (0,70 Cm\u00B2)",
+                price: "268",
+                priceCents: "90",
+                installments: "12x R$ 26,31",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/f3e5f5/333?text=Kit+3+Estrela",
+                color: "#9C27B0"
+            },
+            {
+                title: "Kit 10 Bandeiras Triangulo 0.50 X 0.75 Cm C/ Mastro De 1.05",
+                price: "330",
+                priceCents: "90",
+                installments: "12x R$ 32,37",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/fff3e0/333?text=Bandeiras+Tri",
+                color: "#FF9800"
+            },
+            {
+                title: "Estrelas De Tecido (varias Cores) (0,70 Cm\u00B2)",
+                price: "98",
+                priceCents: "90",
+                coupon: "Cupom R$ 8 OFF",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/efebe9/333?text=Estrela+Cores",
+                color: "#795548"
+            },
+            {
+                title: "Kit 6 Estrelas De Tecido 1,05 Cm\u00B2 Varias Cores",
+                price: "689",
+                priceCents: "90",
+                installments: "12x R$ 66,71",
+                coupon: "Cupom R$ 10 OFF",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/e8eaf6/333?text=6+Estrelas",
+                color: "#3F51B5"
+            },
+            {
+                title: "Kit 2 Estrela P/ Decorar Loja De Veiculos - 0.70 Cm\u00B2",
+                price: "199",
+                priceCents: "90",
+                coupon: "Cupom R$ 8 OFF",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/e0f7fa/333?text=2+Estrela",
+                color: "#00BCD4"
+            },
+            {
+                title: "Kit 8 Estrela Em Tecido Para Decoracao De Loja De Veiculo",
+                price: "890",
+                priceCents: "90",
+                installmentsGreen: "10x R$ 89,09 sem juros",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/e8f5e9/333?text=8+Estrela",
+                color: "#388E3C"
+            },
+            {
+                title: "Kit 20 Bandeiras Triangulo 050 X 075 Cm C/ Mastro De 105",
+                price: "565",
+                priceCents: "90",
+                installments: "12x R$ 54,72",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/fffde7/333?text=20+Bandeiras",
+                color: "#FBC02D"
+            },
+            {
+                title: "Kit 10 Estrela De Tecido 1,05 Cm\u00B2 Na Cor De Sua Escolha",
+                price: "920",
+                priceCents: "",
+                installmentsGreen: "10x R$ 92,00 sem juros",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/fbe9e7/333?text=10+Estrela",
+                color: "#FF5722"
+            },
+            {
+                title: "Kit 10 Estrela De Tecido 0,70 Cm\u00B2 Varias Cores",
+                price: "750",
+                priceCents: "",
+                installments: "12x R$ 72,50",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/f1f8e9/333?text=10+Estrela+0.70",
+                color: "#689F38"
+            },
+            {
+                title: "Kit 4 Estrela Brilhantes P/ Decorar Loja De Carro - 0,70 Cm\u00B2",
+                price: "398",
+                priceCents: "90",
+                installments: "12x R$ 39,02",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/ede7f6/333?text=4+Estrela+Brilh",
+                color: "#673AB7"
+            },
+            {
+                title: "Kit 4 Asa De 2,50 X 1,70 Cm C/ Ou S/ Borda Tecido Tencionado",
+                price: "340",
+                priceCents: "",
+                installments: "12x R$ 33,16",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/e3f2fd/333?text=4+Asa",
+                color: "#1976D2"
+            },
+            {
+                title: "Kit 10 Bandeiras Triangulo Duplo 90x75cm C/ Mastro De 105cm",
+                price: "490",
+                priceCents: "",
+                installments: "12x R$ 47,53",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/fff8e1/333?text=Band+Duplo",
+                color: "#F9A825"
+            },
+            {
+                title: "Estrela De Tecido 1,05 Cm Kit C/ 4 Pc Varias Cores",
+                price: "450",
+                priceCents: "",
+                installments: "12x R$ 43,75",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/fce4ec/333?text=Estrela+1.05",
+                color: "#C2185B"
+            },
+            {
+                title: "Varal De Fitas Metalizada Prata 100 Mts P/ Decoracao",
+                price: "280",
+                priceCents: "",
+                installments: "12x R$ 27,29",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/eceff1/333?text=Varal+Prata",
+                color: "#546E7A"
+            },
+            {
+                title: "Varal De Fita Metalizada Vermelha C/ 200 Mts-10 Por Mts",
+                price: "450",
+                priceCents: "",
+                installments: "12x R$ 43,75",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/ffcdd2/333?text=Fita+Vermelha",
+                color: "#D32F2F"
+            },
+            {
+                title: "Kit 10 Bandeira Triangular Decorarts 130x090cm S/ Mastro",
+                price: "520",
+                priceCents: "",
+                installments: "12x R$ 50,47",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/c8e6c9/333?text=Band+130x90",
+                color: "#2E7D32"
+            },
+            {
+                title: "Kit 20 Bandeira Triangulo Sem Mastro 130 X 090 Cm",
+                price: "980",
+                priceCents: "",
+                installmentsGreen: "10x R$ 98,00 sem juros",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/bbdefb/333?text=20+Band+130",
+                color: "#1976D2"
+            },
+            {
+                title: "Kit 6 Estrela De Tecido 0,70 Cm",
+                price: "398",
+                priceCents: "90",
+                installments: "12x R$ 39,02",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/d1c4e9/333?text=6+Estrela+0.70",
+                color: "#512DA8"
+            },
+            {
+                title: "Kit 10 Parafuso De Tecidos Tencionado 160 Cm",
+                price: "780",
+                priceCents: "",
+                installmentsGreen: "10x R$ 78,00 sem juros",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/dcedc8/333?text=10+Parafuso",
+                color: "#558B2F"
+            },
+            {
+                title: "Fitas Metalizadas Prata P/ Loja De Veiculos - 100 Metros",
+                price: "180",
+                priceCents: "",
+                installments: "12x R$ 17,55",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/cfd8dc/333?text=Fitas+Prata",
+                color: "#78909C"
+            },
+            {
+                title: "Kit 4 Tecido Tencionado Cor Laranja 250cm",
+                price: "320",
+                priceCents: "",
+                installments: "12x R$ 31,12",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/ffe0b2/333?text=Tecido+Laranja",
+                color: "#E65100"
+            },
+            {
+                title: "Tecido Tencionado - Kit 6 Estrela De Tecido 0,70 Cm",
+                price: "420",
+                priceCents: "",
+                installments: "12x R$ 40,82",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/b2dfdb/333?text=6+Estrela+Tec",
+                color: "#00695C"
+            },
+            {
+                title: "Kit 15 Bandeira Triangular Triplo 90x75cm Com Mastro De 105",
+                price: "680",
+                priceCents: "",
+                installments: "12x R$ 66,02",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/b3e5fc/333?text=15+Band+Triplo",
+                color: "#0277BD"
+            },
+            {
+                title: "Kit 10 Estrela De Tecido 1,05 Cm Varias Cores",
+                price: "920",
+                priceCents: "",
+                installmentsGreen: "10x R$ 92,00 sem juros",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/f8bbd0/333?text=10+Estrela+1.05",
+                color: "#AD1457"
+            },
+            {
+                title: "Kit 20 Bandeira 075 X 050 Cm Triangulo Com Mastro 105cm",
+                price: "590",
+                priceCents: "",
+                installments: "12x R$ 57,26",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/c5cae9/333?text=20+Bandeira+75",
+                color: "#283593"
+            },
+            {
+                title: "Estrela P. Copa Do Mundo Kit 4 Pc 0,70cm",
+                price: "346",
+                priceCents: "",
+                installments: "12x R$ 33,85",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/a5d6a7/333?text=Copa+Mundo",
+                color: "#1B5E20"
+            },
+            {
+                title: "Kit 5 Estrelas De Tecido (0,70 Cm\u00B2)",
+                price: "398",
+                priceCents: "90",
+                installments: "12x R$ 39,02",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/90caf9/333?text=5+Estrelas",
+                color: "#0D47A1"
+            },
+            {
+                title: "Kit 25 Bandeiras Triangulo 0.50 X 0.75 Cm Sem Mastro",
+                price: "565",
+                priceCents: "90",
+                installments: "12x R$ 54,72",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/fff9c4/333?text=25+Bandeiras",
+                color: "#F57F17"
+            },
+            {
+                title: "Kit 2 Espirais Em Tecidos Tencionado 1,60 Cm",
+                price: "155",
+                priceCents: "90",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/e1bee7/333?text=2+Espirais",
+                color: "#7B1FA2"
+            },
+            {
+                title: "Tecido Tencionado 10 Asa De 2,50 X 1,70 Cm C/ Ou S/ Borda",
+                price: "924",
+                priceCents: "90",
+                installmentsGreen: "10x R$ 92,49 sem juros",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/e3f2fd/333?text=10+Asa",
+                color: "#0D47A1"
+            },
+            {
+                title: "Varal De Fita Metalizada Prata C/ 300 Mts-10 Por Mts",
+                price: "398",
+                priceCents: "90",
+                installments: "12x R$ 39,02",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/cfd8dc/333?text=Varal+300m",
+                color: "#455A64"
+            },
+            {
+                title: "Estrela Tecido Brilhante Vermelha Kit C/ 2 Pc (0,70cm)",
+                price: "210",
+                priceCents: "",
+                installments: "12x R$ 20,79",
+                freeShipping: true,
+                image: "https://placehold.co/300x300/ef9a9a/333?text=Estrela+Verm",
+                color: "#B71C1C"
+            }
+        ];
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => {
+                let priceHtml = `<div class="price">R$ ${product.price}`;
+                if (product.priceCents) {
+                    priceHtml += `<sup>${product.priceCents}</sup>`;
+                }
+                priceHtml += `</div>`;
+
+                let oldPriceHtml = product.oldPrice ? `<div class="price-old">${product.oldPrice}</div>` : '';
+                let pixHtml = product.pixDiscount ? `<span class="price-pix">${product.pixDiscount}</span>` : '';
+                let installmentsHtml = product.installments ? `<div class="installments">${product.installments}</div>` : '';
+
+                if (product.installmentsPrefix) {
+                    installmentsHtml = `<div class="installments">${product.installmentsPrefix} <span class="installments-green">${product.installmentsGreen}</span></div>`;
+                } else if (product.installmentsGreen) {
+                    installmentsHtml = `<div class="installments-green">${product.installmentsGreen}</div>`;
+                }
+
+                let badgeHtml = product.badge ? `<div class="badge">${product.badge}</div>` : '';
+                let couponHtml = product.coupon ? `<div class="coupon-badge"><svg viewBox="0 0 24 24"><path d="M21 5H3a1 1 0 0 0-1 1v4a2 2 0 0 1 0 4v4a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-4a2 2 0 0 1 0-4V6a1 1 0 0 0-1-1zm-1 5.5a3.5 3.5 0 0 0 0 3v3.5H4V13.5a3.5 3.5 0 0 0 0-3V7h16v3.5z"/></svg>${product.coupon}</div>` : '';
+                let shippingHtml = product.freeShipping ? `<div class="free-shipping">Frete grátis</div>` : '';
+
+                let variantsHtml = '';
+                if (product.hasVariants) {
+                    variantsHtml = `<div class="image-variants"><span class="variant-dot active"></span><span class="variant-dot"></span></div>`;
+                }
+
+                return `
+                    <a href="#" class="product-card">
+                        <div class="product-image-wrapper">
+                            <div class="product-image" style="background: linear-gradient(135deg, ${product.color}15, ${product.color}05);">
+                                <svg width="110" height="110" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                    ${getProductSVG(product.color)}
+                                </svg>
+                            </div>
+                            ${variantsHtml}
+                        </div>
+                        <div class="product-info">
+                            <div class="product-title" title="${product.title}">${product.title}</div>
+                            <div class="price-container">
+                                ${oldPriceHtml}
+                                ${priceHtml}
+                                ${pixHtml}
+                                ${installmentsHtml}
+                            </div>
+                            ${badgeHtml}
+                            ${couponHtml}
+                            ${shippingHtml}
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        function getProductSVG(color) {
+            const shapes = [
+                `<polygon points="60,10 70,45 105,45 77,65 87,100 60,78 33,100 43,65 15,45 50,45" fill="${color}" opacity="0.85"/>`,
+                `<polygon points="30,20 30,100 95,60" fill="${color}" opacity="0.85"/><rect x="28" y="15" width="4" height="90" fill="#475569"/>`,
+                `<path d="M60,20 Q90,40 70,60 Q50,80 60,100 Q70,80 80,60 Q100,40 60,20" fill="none" stroke="${color}" stroke-width="5" stroke-linecap="round" opacity="0.85"/>`,
+                `<polygon points="60,10 90,60 60,110 30,60" fill="${color}" opacity="0.85"/>`,
+            ];
+            return shapes[Math.floor(Math.random() * shapes.length)];
+        }
+
+        let seed = 42;
+        const origRandom = Math.random;
+        Math.random = function() {
+            seed = (seed * 16807) % 2147483647;
+            return (seed - 1) / 2147483646;
+        };
+
+        renderProducts();
+        Math.random = origRandom;
+    </script>
+<script src="js/carousel.js"></script>
+</body>
+</html>
