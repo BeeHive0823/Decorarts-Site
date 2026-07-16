@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorarts Eventos - Loja Oficial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Importando fonte premium para o e-commerce -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <!-- Estilos específicos e modernos para a área de produtos -->
+    <style>
+        /* Substituição global de fontes para o corpo e grid */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        #content {
+            padding: 40px 20px;
+        }
+
+        /* Ajustes no Container Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Tornando o Card um elemento de Link unificado */
+        .product-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            height: 100%;
+        }
+
+        /* O Box do Produto (Card) */
+        .product-card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+            border: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Efeito Hover do Card */
+        .product-card-link:hover .product-card {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            border-color: #d1d1d1;
+        }
+
+        /* Wrapper da Imagem */
+        .product-image-wrapper {
+            width: 100%;
+            height: 250px;
+            background-color: #fafafa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* Zoom sutil na imagem quando passar o mouse no card */
+        .product-card-link:hover .product-image {
+            transform: scale(1.04);
+        }
+
+        /* Conteúdo textual do produto */
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* Título do Produto */
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #2c3e50;
+            margin: 0 0 12px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 40px;
+        }
+
+        /* Badges de Destaques */
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .badge-shipping {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .badge-coupon {
+            background-color: #fff3e0;
+            color: #e65100;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .badge-generic {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* Bloco de Preços */
+        .price-wrapper {
+            margin-top: auto;
+            margin-bottom: 16px;
+        }
+
+        .old-price {
+            font-size: 0.8rem;
+            text-decoration: line-through;
+            color: #a0a0a0;
+            margin-bottom: 2px;
+        }
+
+        .current-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            display: flex;
+            align-items: baseline;
+            line-height: 1;
+        }
+
+        .price-cents {
+            font-size: 0.95rem;
+            align-self: flex-start;
+            margin-left: 1px;
+            font-weight: 700;
+        }
+
+        .pix-discount {
+            color: #388e3c;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .installments-text {
+            font-size: 0.8rem;
+            color: #757575;
+            margin-top: 4px;
+        }
+
+        .installments-green {
+            color: #388e3c;
+            font-weight: 600;
+        }
+
+        /* Botão de Compra Estilizado */
+        .btn-action-comprar {
+            display: block;
+            text-align: center;
+            background-color: #3483fa;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 12px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            margin-top: auto;
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .product-card-link:hover .btn-action-comprar {
+            background-color: #2968c8;
+        }
+    </style>
+</head>
+<body>
+    <a href="#content" class="skip-link">Ir para o conteúdo</a>
+
+    <header class="top-header">
+        <div class="logo">
+            <img src="logo.png" alt="Decorarts">
+        </div>
+
+        <div class="search-box">
+            <input type="text" placeholder="O que você está procurando?">
+            <button>🔍</button>
+        </div>
+
+        <div class="header-buttons">
+            <a href="https://wa.me/5511983023617" class="btn-whatsapp">
+                <span>WhatsApp</span>
+            </a>
+            <a href="carrinho.html" class="btn-cart">
+                <span>Carrinho</span>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <div class="carousel">
+        <div class="slides">
+            <img src="imagem1.png" class="slide" alt="Banner 1">
+            <img src="imagem2.png" class="slide" alt="Banner 2">
+            <img src="imagem3.png" class="slide" alt="Banner 3">
+        </div>
+        <button class="btn-prev">&#10094;</button>
+        <button class="btn-next">&#10095;</button>
+        <div class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <!-- Menu -->
+    <nav class="menu-horizontal">
+        <ul>
+           <li><a href="index.html">INÍCIO</a></li>
+            <li><a href="bandeira.html">BANDEIRAS</a></li>
+            <li><a href="laços.html">LAÇOS</a></li>
+            <li><a href="fitas.html">FITAS METÁLICAS</a></li>
+            <li><a href="estrelas.html">ESTRELAS</a></li>
+        </ul>
+    </nav>
+
+    <!-- Área de Produtos -->
+    <main id="content">
+        <section class="products-section">
+            <div class="products-grid" id="productsGrid">
+                <!-- Injetado dinamicamente via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="logo.png" alt="Decorarts Eventos">
+            </div>
+            <div class="footer-text">
+                <h3>Decorarts Eventos</h3>
+                <p>
+                    Transformando espaços em experiências incríveis.
+                    Bandeiras, estrelas, fitas metálicas e decoração
+                    para todos os tipos de eventos.
+                </p>
+            </div>
+            <div class="footer-social">
+                <h3>Siga nossas redes</h3>
+                <div class="social-buttons">
+                    <a href="#" class="facebook">📘 Facebook</a>
+                    <a href="#" class="instagram">📸 Instagram</a>
+                    <a href="#" class="youtube">▶️ YouTube</a>
+                    <a href="https://wa.me/5518997226158" class="whatsapp">💬 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Decorarts Eventos - Todos os direitos reservados
+        </div>
+    </footer>
+
+    <!-- Botão de WhatsApp Flutuante -->
+    <a href="https://api.whatsapp.com/send/?phone=5511983023617&text=Ol%C3%A1" target="_blank" class="whatsapp-btn" aria-label="Abrir bate-papo no WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script>
+        const products = [
+            {
+                title: "Varal De Fitas Metalizada Prata 100 Mts P/ Decoracao",
+                price: "280",
+                priceCents: "",
+                installments: "12x R$ 27,29",
+                freeShipping: true,
+                image: "img/varalprata.webp",
+                color: "#546E7A",
+                link: "https://www.mercadolivre.com.br/varal-de-fitas-metalizada-prata-100-mts-p-decoracao/up/MLBU729640915?pdp_filters=seller_id%3A175856852#polycard_client=search-desktop&search_layout=grid&position=27&type=product&tracking_id=24804d0b-5f4b-475a-bc3e-d76f6eec98ef&wid=MLB1440215042&sid=search"
+            },
+            {
+                title: "Varal De Fita Metalizada Vermelha C/ 200 Mts-10 Por Mts",
+                price: "450",
+                priceCents: "",
+                installments: "12x R$ 43,75",
+                freeShipping: true,
+                image: "img/varalvermelho.webp",
+                color: "#D32F2F",
+                link: "https://www.mercadolivre.com.br/varal-de-fita-metalizada-vermelha-c-200-mts10-por-mts/up/MLBU3047862542?pdp_filters=seller_id%3A175856852#polycard_client=search-desktop&search_layout=grid&position=36&type=product&tracking_id=24804d0b-5f4b-475a-bc3e-d76f6eec98ef&wid=MLB3991128105&sid=search"
+            },
+           
+            {
+                title: "Fitas Metalizadas Prata P/ Loja De Veiculos - 100 Metros",
+                price: "180",
+                priceCents: "",
+                installments: "12x R$ 17,55",
+                freeShipping: true,
+                image: "img/fitaprata.webp",
+                color: "#78909C",
+                link: "https://www.mercadolivre.com.br/fitas-metalizadas-prata-p-loja-de-veiculos--100-metros/up/MLBU759766613?pdp_filters=seller_id%3A175856852#polycard_client=search-desktop&search_layout=grid&position=39&type=product&tracking_id=24804d0b-5f4b-475a-bc3e-d76f6eec98ef&wid=MLB3357272761&sid=search"
+            },
+           
+            {
+                title: "Varal De Fita Metalizada Prata C/ 300 Mts-10 Por Mts",
+                price: "398",
+                priceCents: "90",
+                installments: "12x R$ 39,02",
+                freeShipping: true,
+                image: "img/fitaprata.webp",
+                color: "#455A64",
+                link: "https://www.mercadolivre.com.br/varal-de-fita-metalizada-prata-c-300-mts10-por-mts/up/MLBU2360004151?pdp_filters=seller_id%3A175856852#polycard_client=search-desktop&search_layout=grid&position=26&type=product&tracking_id=c5bce312-3537-48bc-8f29-ce19563ef8c3&wid=MLB5124140748&sid=search"
+            },
+         
+        ];
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = products.map(product => {
+                // 1. Geração de Badges/Tags
+                let badgesHtml = '';
+                if (product.freeShipping) {
+                    badgesHtml += `<span class="badge-shipping">Frete grátis</span>`;
+                }
+                if (product.coupon) {
+                    badgesHtml += `<span class="badge-coupon">${product.coupon}</span>`;
+                }
+                if (product.badge) {
+                    badgesHtml += `<span class="badge-generic">${product.badge}</span>`;
+                }
+
+                // 2. Preço antigo
+                const oldPriceHtml = product.oldPrice 
+                    ? `<div class="old-price">${product.oldPrice}</div>` 
+                    : '';
+
+                // 3. Centavos do Preço Principal
+                const centsHtml = product.priceCents 
+                    ? `<span class="price-cents">,${product.priceCents}</span>` 
+                    : '';
+
+                // 4. Desconto de Pix
+                const pixHtml = product.pixDiscount 
+                    ? `<div class="pix-discount">${product.pixDiscount}</div>` 
+                    : '';
+
+                // 5. Opções de parcelamento (Normal, Verde ou com Prefixo)
+                let installmentsHtml = '';
+                if (product.installmentsGreen) {
+                    installmentsHtml = `<div class="installments-text installments-green">${product.installmentsGreen}</div>`;
+                } else if (product.installments) {
+                    const prefix = product.installmentsPrefix ? `${product.installmentsPrefix} ` : '';
+                    installmentsHtml = `<div class="installments-text">${prefix}${product.installments}</div>`;
+                }
+
+                // Renderização estruturada do Card como link <a> unificado
+                return `
+                    <a href="${product.link}" target="_blank" class="product-card-link">
+                        <article class="product-card">
+                            <div class="product-image-wrapper">
+                                <img src="${product.image}" alt="${product.title}" class="product-image" loading="lazy">
+                            </div>
+                            
+                            <div class="product-info">
+                                <h3 class="product-title" title="${product.title}">${product.title}</h3>
+                                
+                                <div class="badges-container">
+                                    ${badgesHtml}
+                                </div>
+                                
+                                <div class="price-wrapper">
+                                    ${oldPriceHtml}
+                                    <div class="current-price">
+                                        R$ ${product.price}${centsHtml}
+                                    </div>
+                                    ${pixHtml}
+                                    ${installmentsHtml}
+                                </div>
+                                
+                                <button class="btn-action-comprar">Comprar no Mercado Livre</button>
+                            </div>
+                        </article>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // Executa a função para desenhar os produtos na tela
+        renderProducts();
+    </script>
+</body>
+</html>
